@@ -51,3 +51,10 @@ nlu:
     - cont
     - more
     - keep going
+
+- intent: read_orange_folder
+  examples: |
+    - Read the folder
+    - sit down and read the folder
+    - open the folder
+    - read

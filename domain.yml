@@ -1,5 +1,9 @@
 version: "3.1"
 
+# actions:
+#   - action_restart
+#   - action_session_start
+
 intents:
   - greet
   - goodbye
@@ -8,58 +12,81 @@ intents:
   - bot_challenge
   - get_instructions
   - get_statistics
+  - continue
+  - read_orange_folder
+
+slots:
+  clones:
+    type: any
+    initial_value: 6
+    mappings:
+    - type: custom
+  ultraviolet:
+    type: bool
+    initial_value: false
+    mappings:
+    - type: custom
+  action_doll:
+    type: bool
+    initial_value: false
+    mappings:
+    - type: custom
 
 responses:
 
   utter_instructions:
   - text: |
       Welcome to Paranoia!
-      HOW TO PLAY:
-        Just press <RETURN> until you are asked to make a choice.
-        Select 'a' or 'b' or whatever for your choice, then press <RETURN>.
-        You may select 'p' at any time to get a display of your statistics.
-        Always choose the least dangerous option.  Continue doing this until you win.
-        At times you will use a skill or engage in combat and and will be informed of
-        the outcome.  These sections will be self explanatory.
-      HOW TO DIE:
-        As Philo-R-DMD you will die at times during the adventure.
-        When this happens you will be given an new clone at a particular location.
-        The new Philo-R will usually have to retrace some of the old Philo-R's path;
-        hopefully he won't make the same mistake as his predecessor.
-      HOW TO WIN:
-        Simply complete the mission before you expend all six clones.
-        If you make it, congratulations.
-        If not, you can try again later.
+      (instructions go here)
+
+# HOW TO PLAY:
+      #   Just press <RETURN> until you are asked to make a choice.
+      #   Select 'a' or 'b' or whatever for your choice, then press <RETURN>.
+      #   You may select 'p' at any time to get a display of your statistics.
+      #   Always choose the least dangerous option.  Continue doing this until you win.
+      #   At times you will use a skill or engage in combat and and will be informed of
+      #   the outcome.  These sections will be self explanatory.
+      # HOW TO DIE:
+      #   As Philo-R-DMD you will die at times during the adventure.
+      #   When this happens you will be given an new clone at a particular location.
+      #   The new Philo-R will usually have to retrace some of the old Philo-R's path;
+      #   hopefully he won't make the same mistake as his predecessor.
+      # HOW TO WIN:
+      #   Simply complete the mission before you expend all six clones.
+      #   If you make it, congratulations.
+      #   If not, you can try again later.
 
   utter_statistics:
   - text: |
-      The Character: Philo-R-DMD %d
-      Primary Attributes                      Secondary Attributes
-      ===============================================================================
-      Strength ..................... 13       Carrying Capacity ................. 30
-      Endurance .................... 13       Damage Bonus ....................... 0
-      Agility ...................... 15       Macho Bonus ....................... -1
-      Manual Dexterity ............. 15       Melee Bonus ...................... +5%
-      Moxie ........................ 13       Aimed Weapon Bonus .............. +10%
-      Chutzpah ...................... 8       Comprehension Bonus .............. +4%
-      Mechanical Aptitude .......... 14       Believability Bonus .............. +5%
-      Power Index .................. 10       Repair Bonus ..................... +5%
-      ===============================================================================
-      Credits: 160        Secret Society: Illuminati        Secret Society Rank: 1
-      Service Group: Power Services               Mutant Power: Precognition
-      Weapon: laser pistol; to hit, 40%; type, L; Range, 50m; Reload, 6r; Malfnt, 00
-      Skills: Basics 1(20%), Aimed Weapon Combat 2(35%), Laser 3(40%),
-              Personal Development 1(20%), Communications 2(29%), Intimidation 3(34%)
-      Equipment: Red Reflec Armour, Laser Pistol, Laser Barrel (red),
-                 Notebook & Stylus, Knife, Com Unit 1, Jump suit,
-                 Secret Illuminati Eye-In-The-Pyramid(tm) Decoder ring,
-                 Utility Belt & Pouches
-      ===============================================================================
+      The Character: Philo-R-DMD {clones}
+
+      
+# Primary Attributes                      Secondary Attributes
+# ===============================================================================
+# Strength ..................... 13       Carrying Capacity ................. 30
+# Endurance .................... 13       Damage Bonus ....................... 0
+# Agility ...................... 15       Macho Bonus ....................... -1
+# Manual Dexterity ............. 15       Melee Bonus ...................... +5%
+      # Moxie ........................ 13       Aimed Weapon Bonus .............. +10%
+      # Chutzpah ...................... 8       Comprehension Bonus .............. +4%
+      # Mechanical Aptitude .......... 14       Believability Bonus .............. +5%
+      # Power Index .................. 10       Repair Bonus ..................... +5%
+      # ===============================================================================
+      # Credits: 160        Secret Society: Illuminati        Secret Society Rank: 1
+      # Service Group: Power Services               Mutant Power: Precognition
+      # Weapon: laser pistol; to hit, 40%; type, L; Range, 50m; Reload, 6r; Malfnt, 00
+      # Skills: Basics 1(20%), Aimed Weapon Combat 2(35%), Laser 3(40%),
+      #         Personal Development 1(20%), Communications 2(29%), Intimidation 3(34%)
+      # Equipment: Red Reflec Armour, Laser Pistol, Laser Barrel (red),
+      #            Notebook & Stylus, Knife, Com Unit 1, Jump suit,
+      #            Secret Illuminati Eye-In-The-Pyramid(tm) Decoder ring,
+      #            Utility Belt & Pouches
+      # ===============================================================================
 
   utter_iamabot:
   - text: "I am a bot, powered by Rasa."
 
-  utter_aaa:
+  utter_01:
   - text: |
       You wake up face down on the red and pink checked E-Z-Kleen linoleum floor.
       You recognise the pattern, it's the type preferred in the internal security
