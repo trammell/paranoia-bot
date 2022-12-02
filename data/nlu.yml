@@ -1,0 +1,53 @@
+version: "3.1"
+
+nlu:
+- intent: get_instructions
+  examples: |
+    - help
+    - instructions
+    - print the instructions
+    - tell me how to play
+    - what are the instructions
+    - how do I play
+    - what do I do
+    - please help me
+
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+
+- intent: get_statistics
+  examples: |
+    - stats
+    - statistics
+    - what are my stats
+    - what are my statistics
+
+- intent: continue
+  examples: |
+    - continue
+    - cont
+    - more
+    - keep going

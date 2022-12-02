@@ -1,4 +1,7 @@
 .rasa/cache
+models/
+results/
+train_test_split/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
