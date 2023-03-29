@@ -1,6 +1,16 @@
 version: "3.1"
 
+stories:
+- story: happy path 1
+  steps:
+  - intent: start_paranoia
+  - action: utter_instructions
 
 
 
+
+  - action: utter_clone_stats
+  - action: utter_briefing_cell
+  - action: utter_read_folder
+  - intent: leave_briefing_room
 

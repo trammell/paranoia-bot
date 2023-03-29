@@ -2,23 +2,20 @@
 .PHONY: clean test usage
 
 usage:
-	@echo "usage: make [clean|build]"
+	@echo "usage: make [clean|test|train|all]"
 
 clean:
 	rm -rf results/ train_test_split/
-	ls -r models/* | tail -n+5 | xargs rm
+	ls -r models/* | tail -n+3 | xargs rm
 
-test:
+test: models/
+	rasa data validate
 	rasa data validate stories --max-history 5
 	rasa test
 
-train:
-	rasa train --force
+models/ train:
+	rasa train
 
-#run:
-#	rasa run actions
-
-build:
-	make clean
+all:
 	make train
 	make test

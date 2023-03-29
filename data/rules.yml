@@ -2,18 +2,36 @@ version: "3.1"
 
 rules:
 
-- rule: Dump statistics when asked
+# this rule only applies at the beginning of a conversation
+- rule: welcome user
+  conversation_start: true
   steps:
-  - intent: get_statistics
-  - action: utter_statistics
+  - intent: greet
+  - action: utter_instructions
 
 - rule: Say 'I am a bot' anytime the user challenges
   steps:
   - intent: bot_challenge
-  - action: utter_iamabot
+  - action: utter_you_lack_clearance
+
+- rule: Print clone stats when asked
+  steps:
+  - intent: get_clone_stats
+  - action: utter_clone_stats
+
+- rule: Print instructions when asked
+  steps:
+  - intent: get_instructions
+  - action: utter_instructions
 
 - rule: start the adventure
   conversation_start: true
   steps:
-  - intent: greet
-  - action: utter_01
+  - intent: start_paranoia
+  - action: utter_instructions
+
+
+
+
+
+

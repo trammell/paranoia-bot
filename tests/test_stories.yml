@@ -1,18 +1,15 @@
-#### This file contains tests to evaluate that your bot behaves as expected.
-#### If you want to learn more, please see the docs: https://rasa.com/docs/rasa/testing-your-assistant
 version: 3.1
 
-# stories:
-# - story: happy path 1
-#   steps:
-#   - user: |
-#       hello there!
-#     intent: greet
-#   - action: utter_greet
-#   - user: |
-#       amazing
-#     intent: mood_great
-#   - action: utter_happy
+stories:
+- story: don't ask if this is a bot
+  steps:
+  - user: "are you a bot?"
+    intent: bot_challenge
+  - action: utter_you_lack_clearance
+  - user: |
+      amazing
+    intent: mood_great
+  - action: utter_happy
 
 # - story: happy path 2
 #   steps:
@@ -89,7 +86,7 @@ version: 3.1
   - user: |
       are you a bot?
     intent: bot_challenge
-  - action: utter_iamabot
+  - action: utter_you_lack_clearance
 
 - story: game intro
   steps:

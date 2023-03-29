@@ -1,6 +1,30 @@
 version: "3.1"
 
 nlu:
+
+- intent: greet
+  examples: |
+    - hi
+    - hello
+    - how are you
+    - good morning
+    - good evening
+
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+
+- intent: start_paranoia
+  examples: |
+    - start the game
+    - start paranoia
+    - play the game
+    - paranoia
+    - play paranoia
+
 - intent: get_instructions
   examples: |
     - help
@@ -31,14 +55,7 @@ nlu:
     - no way
     - not really
 
-- intent: bot_challenge
-  examples: |
-    - are you a bot?
-    - are you a human?
-    - am I talking to a bot?
-    - am I talking to a human?
-
-- intent: get_statistics
+- intent: get_clone_stats
   examples: |
     - stats
     - statistics
@@ -58,3 +75,8 @@ nlu:
     - sit down and read the folder
     - open the folder
     - read
+
+- intent: leave_briefing_room
+  examples: |
+    - leave briefing room
+

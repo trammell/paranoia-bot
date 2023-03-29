@@ -1,98 +1,162 @@
 version: "3.1"
 
-# actions:
-#   - action_restart
-#   - action_session_start
-
 intents:
-  - greet
-  - goodbye
-  - affirm
-  - deny
-  - bot_challenge
-  - get_instructions
-  - get_statistics
-  - continue
-  - read_orange_folder
+- greet
+- affirm
+- deny
+- bot_challenge
+- start_paranoia
+- get_instructions
+- get_clone_stats
+- continue
+- read_orange_folder
+- leave_briefing_room
 
 slots:
+  started:
+    type: bool
+    initial_value: false
+    influence_conversation: false
+    mappings:
+    - type: custom
   clones:
-    type: any
-    initial_value: 6
+    type: float
+    initial_value: 6.0
+    max_value: 6.0
+    min_value: 3.0
+    influence_conversation: false
     mappings:
     - type: custom
   ultraviolet:
     type: bool
     initial_value: false
+    influence_conversation: false
     mappings:
     - type: custom
   action_doll:
     type: bool
     initial_value: false
+    influence_conversation: false
     mappings:
     - type: custom
 
 responses:
 
+  utter_you_lack_clearance:
+  - text: |
+      You lack the clearance for that information, citizen.  Further
+      inquiries are not compatible with your physical well-being. The
+      computer is your friend!
+
   utter_instructions:
   - text: |
       Welcome to Paranoia!
-      (instructions go here)
+      HOW TO PLAY:
+        Always choose the least dangerous option.  Continue doing this until
+        you win. At times you will use a skill or engage in combat and and will
+        be informed of the outcome.  These sections will be self explanatory.
+      HOW TO DIE:
+        As Philo-R-DMD you will die at times during the adventure. When this
+        happens you will be given a new clone at a particular location. The new
+        Philo-R will usually have to retrace some of the old Philo-R's path;
+        hopefully they won't make the same mistake as their predecessor.
+      HOW TO WIN:
+        Simply complete the mission before you expend all six clones. If you
+        make it, congratulations. If not, you can try again later.
 
-# HOW TO PLAY:
-      #   Just press <RETURN> until you are asked to make a choice.
-      #   Select 'a' or 'b' or whatever for your choice, then press <RETURN>.
-      #   You may select 'p' at any time to get a display of your statistics.
-      #   Always choose the least dangerous option.  Continue doing this until you win.
-      #   At times you will use a skill or engage in combat and and will be informed of
-      #   the outcome.  These sections will be self explanatory.
-      # HOW TO DIE:
-      #   As Philo-R-DMD you will die at times during the adventure.
-      #   When this happens you will be given an new clone at a particular location.
-      #   The new Philo-R will usually have to retrace some of the old Philo-R's path;
-      #   hopefully he won't make the same mistake as his predecessor.
-      # HOW TO WIN:
-      #   Simply complete the mission before you expend all six clones.
-      #   If you make it, congratulations.
-      #   If not, you can try again later.
-
-  utter_statistics:
+  utter_clone_stats:
   - text: |
-      The Character: Philo-R-DMD {clones}
+      The Character: Philo-R-DMD {clones}  Secret Society: Illuminati, rank 1
+      Primary Attributes                Secondary Attributes
+      ====================================================================
+      Strength ................. 13     Carrying Capacity ............. 30
+      Endurance ................ 13     Damage Bonus ................... 0
+      Agility .................. 15     Macho Bonus ................... -1
+      Manual Dexterity ......... 15     Melee Bonus .................. +5%
+      Moxie .................... 13     Aimed Weapon Bonus .......... +10%
+      Chutzpah .................. 8     Comprehension Bonus .......... +4%
+      Mechanical Aptitude ...... 14     Believability Bonus .......... +5%
+      Power Index .............. 10     Repair Bonus ................. +5%
+      ====================================================================
+      Mutant Power: Precognition
+      Weapon: laser pistol; to hit, 40%; type, L; Range, 50m; Reload, 6r
+      Skills: Basics 1(20%), Aimed Weapon Combat 2(35%), Laser 3(40%),
+              Personal Development 1(20%), Communications 2(29%),
+              Intimidation 3(34%)
+      Equipment: Red Reflec Armour, Laser Pistol, Laser Barrel (red),
+                 Notebook & Stylus, Knife, Com Unit 1, Jump suit,
+                 Secret Illuminati Eye-In-The-Pyramid(tm) Decoder ring,
+                 Utility Belt & Pouches
 
-      
-# Primary Attributes                      Secondary Attributes
-# ===============================================================================
-# Strength ..................... 13       Carrying Capacity ................. 30
-# Endurance .................... 13       Damage Bonus ....................... 0
-# Agility ...................... 15       Macho Bonus ....................... -1
-# Manual Dexterity ............. 15       Melee Bonus ...................... +5%
-      # Moxie ........................ 13       Aimed Weapon Bonus .............. +10%
-      # Chutzpah ...................... 8       Comprehension Bonus .............. +4%
-      # Mechanical Aptitude .......... 14       Believability Bonus .............. +5%
-      # Power Index .................. 10       Repair Bonus ..................... +5%
-      # ===============================================================================
-      # Credits: 160        Secret Society: Illuminati        Secret Society Rank: 1
-      # Service Group: Power Services               Mutant Power: Precognition
-      # Weapon: laser pistol; to hit, 40%; type, L; Range, 50m; Reload, 6r; Malfnt, 00
-      # Skills: Basics 1(20%), Aimed Weapon Combat 2(35%), Laser 3(40%),
-      #         Personal Development 1(20%), Communications 2(29%), Intimidation 3(34%)
-      # Equipment: Red Reflec Armour, Laser Pistol, Laser Barrel (red),
-      #            Notebook & Stylus, Knife, Com Unit 1, Jump suit,
-      #            Secret Illuminati Eye-In-The-Pyramid(tm) Decoder ring,
-      #            Utility Belt & Pouches
-      # ===============================================================================
-
-  utter_iamabot:
-  - text: "I am a bot, powered by Rasa."
-
-  utter_01:
+  utter_briefing_cell:
   - text: |
       You wake up face down on the red and pink checked E-Z-Kleen linoleum floor.
       You recognise the pattern, it's the type preferred in the internal security
       briefing cells.  When you finally look around you, you see that you are alone
       in a large mission briefing room.
     buttons: [{title: "Continue", payload: "/continue"}]
+
+  utter_read_folder:
+  - text: |
+      In the center of the room is a table and a single chair.  There is an
+      Orange folder on the table top, but you can't make out the lettering on
+      it.
+    buttons:
+    - {title: "You sit down and read the folder.", payload: "/read_orange_folder"}
+    - {title: "You leave the room.", payload: "/leave_briefing_room"}
+
+  utter_briefing:
+  - text: |
+      The printing on the folder says "Experimental Self Briefing."
+      You open it and begin to read the following:
+      Step 1: Compel the briefing subject to attend the briefing.
+          NOTE: See Experimental Briefing Sub Form Indigo-WY-2, 'Experimental
+                Self Briefing Subject Acquisition Through The Use Of Neurotoxin
+                Room Foggers.'
+      Step 2: Inform the briefing subject that the briefing has begun.
+          ATTENTION: THE BRIEFING HAS BEGUN.
+      Step 3: Present the briefing material to the briefing subject.
+          GREETINGS TROUBLESHOOTER.
+          YOU HAVE BEEN SPECIALLY SELECTED TO SINGLEHANDEDLY
+          WIPE OUT A DEN OF TRAITOROUS CHRISTMAS ACTIVITY.  YOUR MISSION IS TO
+          GO TO GOODS DISTRIBUTION HALL 7-BETA AND ASSESS ANY CHRISTMAS ACTIVITY
+          YOU FIND THERE.  YOU ARE TO INFILTRATE THESE CHRISTMAS CELEBRANTS,
+          LOCATE THEIR RINGLEADER, AN UNKNOWN MASTER RETAILER, AND BRING HIM
+          BACK FOR EXECUTION AND TRIAL.  THANK YOU.  THE COMPUTER IS YOUR FRIEND.
+      Step 4: Sign the briefing subject's briefing release form to indicate that
+            the briefing subject has completed the briefing.
+            ATTENTION: PLEASE SIGN YOUR BRIEFING RELEASE FORM.
+      Step 5: Terminate the briefing
+            ATTENTION: THE BRIEFING IS TERMINATED.
+
+  utter_leave_briefing_room:
+  - condition:
+    - type: slot
+      name: completed_briefing
+      value: true
+    text: |
+      You walk to the door and hold your signed briefing release form up to the
+      plexiglass window.  A guard scrutinises it for a moment and then slides
+      back the megabolts holding the door shut.  You are now free to continue
+      the mission.
+    buttons:
+    - {title: "You wish to ask The Computer for more information about Christmas.", payload: "/__3__"}
+    - {title: "You have decided to go directly to Goods Distribution Hall 7-β.", payload: "/__10__"}
+  - condition:
+    - type: slot
+      name: completed_briefing
+      value: false
+    text: |
+      You walk up to the door and push the button labelled "push to exit."
+      Within seconds a surly looking guard shoves his face into the small plexiglass
+      window.  You can see his mouth forming words but you can\'t hear any of them.
+      You just stare at him blankly  for a few moments until he points down to a
+      speaker on your side of the door.  When you put your ear to it you can barely
+      hear him say, \"Let\'s see your briefing release form, bud.  You aren't
+      getting out of here without it.\"
+    buttons:
+    - {title: "You sit down at the table and read the Orange packet.", payload: "/__11__"}
+    - {title: "You stare around the room some more.", payload: "/__57__"}
 
 session_config:
   session_expiration_time: 60
