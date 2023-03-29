@@ -5,12 +5,10 @@ stories:
   steps:
   - intent: start_paranoia
   - action: utter_instructions
-
-
-
-
   - action: utter_clone_stats
   - action: utter_briefing_cell
+  - intent: continue
   - action: utter_read_folder
-  - intent: leave_briefing_room
+  - intent: read_orange_folder
+  - action: utter_briefing
 

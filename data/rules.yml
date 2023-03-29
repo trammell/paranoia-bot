@@ -14,21 +14,21 @@ rules:
   - intent: bot_challenge
   - action: utter_you_lack_clearance
 
-- rule: Print clone stats when asked
-  steps:
-  - intent: get_clone_stats
-  - action: utter_clone_stats
+    # - rule: Print clone stats when asked
+    #   steps:
+    #   - intent: get_clone_stats
+    #   - action: utter_clone_stats
 
 - rule: Print instructions when asked
   steps:
   - intent: get_instructions
   - action: utter_instructions
 
-- rule: start the adventure
-  conversation_start: true
-  steps:
-  - intent: start_paranoia
-  - action: utter_instructions
+#- rule: start the adventure
+# conversation_start: true
+# steps:
+# - intent: start_paranoia
+# - action: utter_instructions
 
 
 
