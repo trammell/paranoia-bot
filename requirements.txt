@@ -1,0 +1,2 @@
+rasa~=3.7.0b2
+websockets~=10.4

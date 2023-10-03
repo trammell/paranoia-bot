@@ -1,5 +1,4 @@
-
-.PHONY: clean test usage
+.PHONY: all clean install test train update upgrade usage
 
 usage:
 	@echo "usage: make [clean|test|train|all]"
@@ -8,12 +7,15 @@ clean:
 	rm -rf results/ train_test_split/
 	ls -r models/* | tail -n+3 | xargs rm
 
-test: models/
+install upgrade:
+	pip install --upgrade pip
+	pip install --upgrade -r requirements.txt
+
+test:
 	rasa data validate
-	rasa data validate stories --max-history 5
 	rasa test
 
-models/ train:
+train:
 	rasa train
 
 all:
